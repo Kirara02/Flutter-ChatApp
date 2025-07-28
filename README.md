@@ -1,4 +1,4 @@
-# XChat - Aplikasi Chat Real-time dengan Flutter
+# XChat - Real-time Chat Application with Flutter
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-3.x-blue?logo=flutter" alt="Flutter Version">
@@ -6,120 +6,119 @@
   <img src="https://img.shields.io/badge/Architecture-Clean-brightgreen" alt="Architecture">
 </p>
 
-XChat adalah aplikasi mobile fungsional yang dibangun menggunakan Flutter untuk menyediakan platform perpesanan instan yang modern, cepat, dan andal. Aplikasi ini dirancang dengan arsitektur bersih (_Clean Architecture_) untuk memastikan kode yang mudah dikelola, diskalakan, dan diuji.
+This is the **frontend** repository for the XChat application. The corresponding backend repository (built with Go-Fiber) can be found here:
+**Backend Repository**: [https://github.com/Kirara02/Go-Fiber-ChatApp.git](https://github.com/Kirara02/Go-Fiber-ChatApp.git)
 
-## Tampilan Aplikasi
+XChat is a functional mobile application built using Flutter to provide a modern, fast, and reliable instant messaging platform. This application is designed with Clean Architecture to ensure the code is manageable, scalable, and testable.
 
-Berikut adalah beberapa tampilan utama dari aplikasi XChat:
+## Application Screenshots
+
+Here are some of the main screens of the XChat application:
 
 <table align="center">
   <tr>
-    <td align="center"><strong>Layar Login</strong></td>
-    <td align="center"><strong>Layar Registrasi</strong></td>
+    <td align="center"><strong>Login Screen</strong></td>
+    <td align="center"><strong>Register Screen</strong></td>
   </tr>
   <tr>
-    <td valign="top"><img src="docs/login_screen.jpg" alt="Tampilan Layar Login" width="250"/></td>
-    <td valign="top"><img src="docs/register_screen.jpg" alt="Tampilan Layar Registrasi" width="250"/></td>
+    <td valign="top"><img src="docs/login_screen.jpg" alt="Login Screen Screenshot" width="250"/></td>
+    <td valign="top"><img src="docs/register_screen.jpg" alt="Register Screen Screenshot" width="250"/></td>
   </tr>
   <tr>
-    <td align="center"><strong>Daftar Chat</strong></td>
-    <td align="center"><strong>Ruang Obrolan</strong></td>
+    <td align="center"><strong>Chats List</strong></td>
+    <td align="center"><strong>Chat Room</strong></td>
   </tr>
   <tr>
-    <td valign="top"><img src="docs/chats_screen.jpg" alt="Tampilan Daftar Chat" width="250"/></td>
-    <td valign="top"><img src="docs/chat_screen.jpg" alt="Tampilan Ruang Obrolan" width="250"/></td>
+    <td valign="top"><img src="docs/chats_screen.jpg" alt="Chats List Screenshot" width="250"/></td>
+    <td valign="top"><img src="docs/chat_screen.jpg" alt="Chat Room Screenshot" width="250"/></td>
   </tr>
 </table>
 
-## Fitur Utama
+## Key Features
 
-- **Autentikasi Pengguna**: Alur lengkap untuk Pendaftaran (_Register_), Masuk (_Login_), dan Keluar (_Logout_).
-- **Daftar Chat**: Menampilkan semua ruang obrolan (pribadi dan grup) dengan pesan terakhir dan waktu.
-- **Real-time Chat**: Komunikasi dua arah secara instan menggunakan WebSocket.
-- **Arsitektur Bersih**: Pemisahan yang jelas antara lapisan Presentasi, Domain, dan Data.
-- **Manajemen State Modern**: Menggunakan Riverpod untuk manajemen state yang reaktif dan efisien.
-- **Penanganan Error**: Mekanisme penanganan error jaringan yang tangguh.
+- **User Authentication**: Complete flow for Register, Login, and Logout.
+- **Chats List**: Displays all chat rooms (private and group) with the last message and timestamp.
+- **Real-time Chat**: Instant two-way communication using WebSockets.
+- **Clean Architecture**: Clear separation between Presentation, Domain, and Data layers.
+- **Modern State Management**: Uses Riverpod for reactive and efficient state management.
+- **Error Handling**: Robust mechanism for handling network errors.
 
-## Teknologi & Arsitektur
+## Technology & Architecture
 
-Proyek ini dibangun dengan tumpukan teknologi modern untuk pengembangan aplikasi Flutter:
+This project is built with a modern technology stack for Flutter application development:
 
 - **Framework**: [Flutter](https://flutter.dev/)
-- **Bahasa**: [Dart](https://dart.dev/)
-- **Manajemen State**: [Riverpod](https://riverpod.dev/) dengan [Riverpod Generator](https://pub.dev/packages/riverpod_generator) untuk _boilerplate-free code_.
+- **Language**: [Dart](https://dart.dev/)
+- **State Management**: [Riverpod](https://riverpod.dev/) with [Riverpod Generator](https://pub.dev/packages/riverpod_generator) for boilerplate-free code.
 - **Networking**:
-  - [Dio](https://pub.dev/packages/dio) untuk permintaan HTTP (REST API).
-  - [web_socket_channel](https://pub.dev/packages/web_socket_channel) untuk komunikasi WebSocket.
-- **Routing**: [GoRouter](https://pub.dev/packages/go_router) dengan _Typed Routes_ untuk navigasi yang aman.
-- **Arsitektur**: Mengadopsi prinsip **Clean Architecture** dengan lapisan:
-  - **Presentation**: UI (Widgets) dan Controller (Notifier).
-  - **Domain**: Usecase dan Model entitas.
-  - **Data**: Repository dan DataSource (remote/local).
+  - [Dio](https://pub.dev/packages/dio) for HTTP requests (REST API).
+  - [web_socket_channel](https://pub.dev/packages/web_socket_channel) for WebSocket communication.
+- **Routing**: [GoRouter](https://pub.dev/packages/go_router) with Typed Routes for safe navigation.
+- **Architecture**: Adopts **Clean Architecture** principles with the following layers:
+  - **Presentation**: UI (Widgets) and Controllers (Notifiers).
+  - **Domain**: Usecases and entity Models.
+  - **Data**: Repositories and DataSources (remote/local).
 
-## Memulai Proyek
+## Getting Started
 
-Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah berikut:
+To run this project in your local environment, follow these steps:
 
-### Prasyarat
+### Prerequisites
 
-- Pastikan Anda telah menginstal [Flutter SDK](https://docs.flutter.dev/get-started/install) (versi 3.x atau lebih baru).
-- Sebuah IDE seperti VS Code atau Android Studio.
+- Ensure you have the [Flutter SDK](https://docs.flutter.dev/get-started/install) installed (version 3.x or newer).
+- An IDE like VS Code or Android Studio.
 
-### Instalasi
+### Installation
 
-1.  **Clone repository ini:**
+1.  **Clone this repository:**
 
     ```bash
-    git clone [https://github.com/URL_PROYEK_ANDA/xchat.git](https://github.com/URL_PROYEK_ANDA/xchat.git)
+    git clone [https://github.com/YOUR_USERNAME/xchat.git](https://github.com/YOUR_USERNAME/xchat.git)
     cd xchat
     ```
 
-2.  **Install dependensi:**
+2.  **Install dependencies:**
 
     ```bash
     flutter pub get
     ```
 
-3.  **Jalankan code generator:**
-    Riverpod Generator digunakan untuk menghasilkan _provider_. Jalankan perintah berikut untuk menghasilkan file yang diperlukan (`.g.dart`):
+3.  **Run the code generator:**
+    Riverpod Generator is used to generate providers. Run the following command to generate the necessary files (`.g.dart`):
 
     ```bash
     flutter pub run build_runner watch --delete-conflicting-outputs
     ```
 
-4.  **Jalankan aplikasi:**
-    Pastikan Anda memiliki emulator yang berjalan atau perangkat fisik yang terhubung, lalu jalankan:
+4.  **Run the application:**
+    Ensure you have a running emulator or a connected physical device, then run:
     ```bash
     flutter run
     ```
 
-## Struktur Proyek
+## Project Structure
 
-Struktur direktori proyek ini dirancang agar mudah dinavigasi dan diskalakan:
+The project's directory structure is designed to be easily navigable and scalable:
 
 ```
 lib/
 ├── src/
-│   ├── core/                # Logika inti, seperti networking, result type, dll.
-│   ├── features/            # Fitur-fitur utama aplikasi
-│   │   ├── auth/            # Fitur autentikasi (login, register)
+│   ├── core/                # Core logic, such as networking, result type, etc.
+│   ├── features/            # Main features of the application
+│   │   ├── auth/            # Authentication feature (login, register)
 │   │   │   ├── data/
 │   │   │   ├── domain/
 │   │   │   └── presentation/
-│   │   └── main/            # Fitur utama setelah login (chats, chat room)
+│   │   └── main/            # Main feature after login (chats, chat room)
 │   │       ├── data/
 │   │       ├── domain/
 │   │       └── presentation/
-│   ├── global_providers/    # Provider Riverpod yang bersifat global
-│   ├── routes/              # Konfigurasi GoRouter
-│   └── utils/               # Utilitas dan ekstensi
-└── main.dart                # Titik masuk utama aplikasi
+│   ├── global_providers/    # Global Riverpod providers
+│   ├── routes/              # GoRouter configuration
+│   └── utils/               # Utilities and extensions
+└── main.dart                # Main entry point of the application
 ```
 
-## Kontribusi
+## Contribution
 
-Kontribusi sangat kami hargai! Jika Anda ingin berkontribusi, silakan _fork_ repository ini dan buat _pull request_. Untuk perubahan besar, mohon buka _issue_ terlebih dahulu untuk mendiskusikan apa yang ingin Anda ubah.
-
-## Lisensi
-
-Proyek ini dilisensikan di bawah Lisensi MIT. Lihat file `LICENSE` untuk detailnya.
+Contributions are highly appreciated! If you wish to contribute, please fork this repository and create a pull request. For major changes, please open an issue first to discuss what you would like to change.
