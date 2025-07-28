@@ -18,16 +18,16 @@ Berikut adalah beberapa tampilan utama dari aplikasi XChat:
     <td align="center"><strong>Layar Registrasi</strong></td>
   </tr>
   <tr>
-    <td valign="top"><img src="docs/login_screen.png" alt="Tampilan Layar Login" width="250"/></td>
-    <td valign="top"><img src="docs/register_screen.png" alt="Tampilan Layar Registrasi" width="250"/></td>
+    <td valign="top"><img src="docs/login_screen.jpg" alt="Tampilan Layar Login" width="250"/></td>
+    <td valign="top"><img src="docs/register_screen.jpg" alt="Tampilan Layar Registrasi" width="250"/></td>
   </tr>
   <tr>
     <td align="center"><strong>Daftar Chat</strong></td>
     <td align="center"><strong>Ruang Obrolan</strong></td>
   </tr>
   <tr>
-    <td valign="top"><img src="docs/chats_screen.png" alt="Tampilan Daftar Chat" width="250"/></td>
-    <td valign="top"><img src="docs/chat_screen.png" alt="Tampilan Ruang Obrolan" width="250"/></td>
+    <td valign="top"><img src="docs/chats_screen.jpg" alt="Tampilan Daftar Chat" width="250"/></td>
+    <td valign="top"><img src="docs/chat_screen.jpg" alt="Tampilan Ruang Obrolan" width="250"/></td>
   </tr>
 </table>
 
