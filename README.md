@@ -34,7 +34,6 @@ Berikut adalah beberapa tampilan utama dari aplikasi XChat:
 ## Fitur Utama
 
 - **Autentikasi Pengguna**: Alur lengkap untuk Pendaftaran (_Register_), Masuk (_Login_), dan Keluar (_Logout_).
-- **Onboarding**: Pengenalan aplikasi yang ramah bagi pengguna baru.
 - **Daftar Chat**: Menampilkan semua ruang obrolan (pribadi dan grup) dengan pesan terakhir dan waktu.
 - **Real-time Chat**: Komunikasi dua arah secara instan menggunakan WebSocket.
 - **Arsitektur Bersih**: Pemisahan yang jelas antara lapisan Presentasi, Domain, dan Data.
