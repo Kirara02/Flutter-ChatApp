@@ -1,0 +1,9 @@
+{
+  "@@locale": "id",
+  "app_name":"Xchat",
+  "app_language" : "Bahasa Aplikasi",
+  "app_theme": "Mode Tema Aplikasi",
+  "theme_mode_dark": "Gelap",
+  "theme_mode_light": "Terang",
+  "theme_mode_system": "Sistem"
+}

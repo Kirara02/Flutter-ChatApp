@@ -1,0 +1,80 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gap/gap.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../constants/app_sizes.dart';
+
+part 'toast.g.dart';
+
+class Toast {
+  Toast(this._context) {
+    _fToast = FToast().init(_context);
+  }
+  final BuildContext _context;
+  late FToast _fToast;
+
+  void instantShow(String msg) {
+    close();
+    show(msg);
+  }
+
+  void show(String msg, {bool withMicrotask = false}) {
+    if (withMicrotask) {
+      Future.microtask(
+        () => _fToast.showToast(
+          child: ToastWidget(text: msg),
+          gravity: ToastGravity.BOTTOM,
+        ),
+      );
+    } else {
+      _fToast.showToast(
+        child: ToastWidget(text: msg),
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
+  }
+
+  void showError(String error) => _fToast.showToast(
+    child: ToastWidget(text: error, backgroundColor: Colors.red.shade400),
+    gravity: ToastGravity.TOP,
+  );
+
+  void close() => _fToast.removeCustomToast();
+}
+
+class ToastWidget extends StatelessWidget {
+  const ToastWidget({
+    super.key,
+    required this.text,
+    this.icon,
+    this.backgroundColor,
+    this.textColor,
+  });
+  final String text;
+  final Widget? icon;
+  final Color? backgroundColor;
+  final Color? textColor;
+  @override
+  Widget build(BuildContext context) {
+    Widget textWidget = Text(
+      text,
+      style: TextStyle(color: textColor ?? Colors.white),
+      textAlign: TextAlign.center,
+    );
+    return Container(
+      padding: KEdgeInsets.h16v8.size,
+      decoration: BoxDecoration(
+        borderRadius: KBorderRadius.r16.radius,
+        color: backgroundColor ?? Colors.black54,
+      ),
+      child: icon != null
+          ? Row(children: [icon!, const Gap(16), textWidget])
+          : textWidget,
+    );
+  }
+}
+
+@riverpod
+Toast toast(Ref ref, BuildContext context) => Toast(context);
