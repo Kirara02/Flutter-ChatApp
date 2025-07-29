@@ -35,7 +35,7 @@ mixin SharedPreferenceClientMixin<T extends Object> {
   T? get _get {
     final value = _client.get(_key);
     if (_fromJson != null && value is String) {
-      return _fromJson(jsonDecode(value));
+      return _fromJson?.call(jsonDecode(value));
     }
     if (value != null && value is List) {
       return value.map((e) => e.toString()).toList() as T?;
@@ -46,7 +46,7 @@ mixin SharedPreferenceClientMixin<T extends Object> {
   Future<bool> persist(T? value) async {
     if (value == null) return _client.remove(_key);
     if (_toJson != null) {
-      return _client.setString(_key, jsonEncode(_toJson(value)));
+      return _client.setString(_key, jsonEncode(_toJson?.call(value)));
     }
     if (value is bool) return _client.setBool(_key, value);
     if (value is double) return _client.setDouble(_key, value);

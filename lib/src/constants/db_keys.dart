@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'enum.dart';
 
 enum DBKeys {
-  // serverUrl("http://10.166.236.124"),
-  serverUrl("http://192.168.1.156"),
+  serverUrl("http://10.26.193.124"),
+  // serverUrl("http://192.168.1.156"),
   serverPort(8080),
   themeMode(ThemeMode.system),
   authType(AuthType.bearer),
