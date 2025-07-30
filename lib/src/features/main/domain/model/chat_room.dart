@@ -7,6 +7,7 @@ class ChatRoom {
   final bool isPrivate;
   final List<User>? users;
   final int? ownerId;
+  final String? roomImage;
   final String? lastMessage;
   final DateTime? lastMessageAt;
   final DateTime createdAt;
@@ -18,6 +19,7 @@ class ChatRoom {
     required this.isPrivate,
     this.users,
     this.ownerId,
+    this.roomImage,
     this.lastMessage,
     this.lastMessageAt,
     required this.createdAt,

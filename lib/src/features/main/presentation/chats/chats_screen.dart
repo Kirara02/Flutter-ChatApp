@@ -133,7 +133,11 @@ class ChatListItem extends StatelessWidget {
       ).push(context),
       leading: CircleAvatar(
         radius: 28,
-        backgroundImage: NetworkImage('https://i.pravatar.cc/150?u=${chat.id}'),
+        backgroundImage: NetworkImage(
+          chat.roomImage != null
+              ? chat.roomImage!
+              : 'https://ui-avatars.com/api/?name=${chat.name}&size=150',
+        ),
         child: chat.isGroup
             ? const Align(
                 alignment: Alignment.bottomRight,

@@ -10,6 +10,7 @@ class ChatRoomDto extends MapSerializable {
   bool get isPrivate => this['is_private'];
   List<UserDto>? get users => getNestedList('users', UserDto.fromMap);
   int? get ownerId => this['owner_id'];
+  String? get roomImage => this['room_image'];
   String? get lastMessage => this['last_message'];
   String? get lastMessageAtRaw => this['last_message_at'];
   String get createdAtRaw => this['created_at'];

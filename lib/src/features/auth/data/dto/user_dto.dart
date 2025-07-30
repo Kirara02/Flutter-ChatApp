@@ -6,7 +6,13 @@ class UserDto extends MapSerializable {
   int get id => this['id'];
   String get name => this['name'];
   String get email => this['email'];
+  String? get profileImage => this['profile_image'];
 
   @override
-  Map<String, dynamic> toMap() => {'id': id, 'name': name, 'email': email};
+  Map<String, dynamic> toMap() => {
+    'id': id,
+    'name': name,
+    'email': email,
+    'profile_image': profileImage,
+  };
 }

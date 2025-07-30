@@ -1,7 +1,8 @@
 part of '../custom_extensions.dart';
 
 extension UserMapper on UserDto {
-  User toModel() => User(id: id, name: name, email: email);
+  User toModel() =>
+      User(id: id, name: name, email: email, profileImage: profileImage);
 }
 
 extension LoginMapper on LoginDto {
@@ -25,6 +26,7 @@ extension ChatRoomMapper on ChatRoomDto {
     isPrivate: isPrivate,
     users: users?.map((e) => e.toModel()).toList(),
     ownerId: ownerId,
+    roomImage: roomImage,
     lastMessage: lastMessage,
     lastMessageAt: lastMessageAtRaw != null
         ? DateTime.parse(lastMessageAtRaw!)
