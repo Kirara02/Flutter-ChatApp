@@ -29,6 +29,31 @@ class ChatRoomDatasource {
       itemConverter: (json) => ChatRoomDto.fromMap(json),
     );
   }
+  
+Future<ApiResponse<ChatRoomDto>> getUserRoomsById({
+    required int roomId,
+    CancelToken? cancelToken,
+  }) async {
+    
+    return await _dioClient.getApiData<ChatRoomDto, dynamic>(
+      "/rooms/$roomId",
+      cancelToken: cancelToken,
+      converter: (json) => ChatRoomDto.fromMap(json),
+    );
+  }
+
+  Future<ApiResponse<ChatRoomDto>> updateRoomImage({
+    required int roomId,
+    required FormData formData,
+    CancelToken? cancelToken,
+  }) async {
+    return await _dioClient.putApiData<ChatRoomDto, dynamic>(
+      "/rooms/$roomId/image",
+      data: formData,
+      cancelToken: cancelToken,
+      converter: (json) => ChatRoomDto.fromMap(json),
+    );
+  }
 }
 
 @riverpod

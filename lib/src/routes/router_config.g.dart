@@ -115,19 +115,26 @@ RouteBase get $shellRoute => StatefulShellRouteData.$route(
               path: ':roomId',
 
               factory: _$ChatRoute._fromState,
+              routes: [
+                GoRouteData.$route(
+                  path: 'detail',
+
+                  factory: _$ChatDetailRoute._fromState,
+                ),
+              ],
             ),
           ],
         ),
       ],
     ),
     StatefulShellBranchData.$branch(
-      initialLocation: ProfileBranch.$initialLocation,
+      initialLocation: StoriesBranch.$initialLocation,
 
       routes: [
         GoRouteData.$route(
-          path: '/profile',
+          path: '/stories',
 
-          factory: _$ProfileRoute._fromState,
+          factory: _$StoriesRoute._fromState,
         ),
       ],
     ),
@@ -161,7 +168,7 @@ mixin _$ChatsRoute on GoRouteData {
 mixin _$ChatRoute on GoRouteData {
   static ChatRoute _fromState(GoRouterState state) => ChatRoute(
     roomId: state.pathParameters['roomId']!,
-    $extra: state.extra as String,
+    $extra: state.extra as String?,
   );
 
   ChatRoute get _self => this as ChatRoute;
@@ -186,11 +193,40 @@ mixin _$ChatRoute on GoRouteData {
       context.replace(location, extra: _self.$extra);
 }
 
-mixin _$ProfileRoute on GoRouteData {
-  static ProfileRoute _fromState(GoRouterState state) => const ProfileRoute();
+mixin _$ChatDetailRoute on GoRouteData {
+  static ChatDetailRoute _fromState(GoRouterState state) => ChatDetailRoute(
+    roomId: state.pathParameters['roomId']!,
+    $extra: state.extra as String?,
+  );
+
+  ChatDetailRoute get _self => this as ChatDetailRoute;
 
   @override
-  String get location => GoRouteData.$location('/profile');
+  String get location => GoRouteData.$location(
+    '/chats/${Uri.encodeComponent(_self.roomId)}/detail',
+  );
+
+  @override
+  void go(BuildContext context) => context.go(location, extra: _self.$extra);
+
+  @override
+  Future<T?> push<T>(BuildContext context) =>
+      context.push<T>(location, extra: _self.$extra);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location, extra: _self.$extra);
+
+  @override
+  void replace(BuildContext context) =>
+      context.replace(location, extra: _self.$extra);
+}
+
+mixin _$StoriesRoute on GoRouteData {
+  static StoriesRoute _fromState(GoRouterState state) => const StoriesRoute();
+
+  @override
+  String get location => GoRouteData.$location('/stories');
 
   @override
   void go(BuildContext context) => context.go(location);

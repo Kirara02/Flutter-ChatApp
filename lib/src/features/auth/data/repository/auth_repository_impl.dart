@@ -84,7 +84,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Result<String>> logout({CancelToken? cancelToken}) async {
     final response = await _datasource.logout(cancelToken: cancelToken);
-    if (response.success && response.data != null) {
+    if (response.success) {
       _ref.read(credentialsProvider.notifier).update(null);
       _ref.read(refreshCredentialsProvider.notifier).update(null);
       _ref.invalidate(authUserProvider);

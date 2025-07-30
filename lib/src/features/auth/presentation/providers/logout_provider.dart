@@ -27,7 +27,7 @@ class LogoutNotifier extends _$LogoutNotifier {
         if (message.contains("cancelled")) {
           state = AsyncData(null);
         } else {
-          printIfDebug("no cancel: $message");
+          printIfDebug("error: $message");
           state = AsyncError(FlutterError(message), StackTrace.current);
         }
     }

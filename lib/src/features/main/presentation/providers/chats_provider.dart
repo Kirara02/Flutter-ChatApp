@@ -10,7 +10,6 @@ part 'chats_provider.g.dart';
 class ChatsNotifier extends _$ChatsNotifier {
   @override
   Future<List<ChatRoom>> build() async {
-    // Panggil usecase saat provider pertama kali dibuat
     final getChatsUseCase = ref.watch(getChatsProvider);
     final result = await getChatsUseCase.call(GetChatsParams());
 
@@ -18,13 +17,11 @@ class ChatsNotifier extends _$ChatsNotifier {
       case Success(value: final chats):
         return chats;
       case Failed(message: final msg):
-        throw Exception(msg); // Lempar error agar state menjadi AsyncError
+        throw Exception(msg);
     }
   }
 
-  // Fungsi untuk pull-to-refresh
   Future<void> refreshChats() async {
-    // Invalidate provider agar build() dijalankan kembali untuk fetch data baru
     ref.invalidateSelf();
   }
 }

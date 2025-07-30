@@ -1,30 +1,31 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:xchat/src/constants/colors.dart';
 
 class ImagePickerHelper {
   final ImagePicker _picker = ImagePicker();
 
-  // Combine pick, crop, and compress in one function
-  Future<File?> pickAndProcessImage(ImageSource source) async {
-    final pickedFile = await _picker.pickImage(source: source);
-    if (pickedFile == null) return null;
+  /// Returns XFile (web/mobile) or Uint8List (web cropped)
+  Future<XFile?> pickAndProcessImage(ImageSource source) async {
+    final picked = await _picker.pickImage(source: source);
+    if (picked == null) return null;
 
-    // Crop the image
-    final croppedFile = await _cropImage(File(pickedFile.path));
-    if (croppedFile == null) return null;
+    if (kIsWeb) {
+      return picked;
+    }
 
-    // Compress the image
-    return await _compressImage(croppedFile);
+    final cropped = await _cropImage(picked.path);
+    if (cropped == null) return null;
+
+    return _compressImage(cropped.path);
   }
 
-  Future<CroppedFile?> _cropImage(File imageFile) async {
+  Future<CroppedFile?> _cropImage(String path) async {
     return await ImageCropper().cropImage(
-      sourcePath: imageFile.path,
+      sourcePath: path,
       maxWidth: 800,
       compressFormat: ImageCompressFormat.jpg,
       compressQuality: 90,
@@ -47,19 +48,16 @@ class ImagePickerHelper {
     );
   }
 
-  Future<File?> _compressImage(CroppedFile croppedFile) async {
-    final result = await FlutterImageCompress.compressWithFile(
-      croppedFile.path,
+  Future<XFile?> _compressImage(String path) async {
+    final result = await FlutterImageCompress.compressAndGetFile(
+      path,
+      "$path-compressed.jpg",
       minWidth: 800,
       minHeight: 600,
       quality: 75,
-      rotate: 0,
-      format: CompressFormat.jpeg,
     );
 
-    if (result != null) {
-      return File(croppedFile.path)..writeAsBytesSync(result);
-    }
+    if (result != null) return XFile(result.path);
     return null;
   }
 }

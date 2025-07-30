@@ -24,13 +24,11 @@ class NavigationBarData {
       activeOn: [const ChatsRoute().location],
     ),
     NavigationBarData(
-      icon: Icon(Icons.person_outline_outlined),
-      activeIcon: Icon(Icons.person),
-      label: (context) => "Profile",
-      go: const ProfileRoute().go,
-      activeOn: [
-        const ProfileRoute().location,
-      ],
+      icon: Icon(Icons.update_outlined),
+      activeIcon: Icon(Icons.update_rounded),
+      label: (context) => "Story",
+      go: const StoriesRoute().go,
+      activeOn: [const StoriesRoute().location],
     ),
   ];
 

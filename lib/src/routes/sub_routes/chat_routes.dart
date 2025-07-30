@@ -13,10 +13,19 @@ class ChatsRoute extends GoRouteData with _$ChatsRoute {
 
 class ChatRoute extends GoRouteData with _$ChatRoute {
   final String roomId;
-  final String $extra;
-  const ChatRoute({required this.roomId, required this.$extra});
+  final String? $extra;
+  const ChatRoute({required this.roomId, this.$extra});
 
   @override
   Widget build(context, state) =>
       ChatScreen(roomId: int.parse(roomId), roomName: state.extra as String);
+}
+
+class ChatDetailRoute extends GoRouteData with _$ChatDetailRoute {
+  final String roomId;
+  final String? $extra;
+  const ChatDetailRoute({required this.roomId, this.$extra});
+
+  @override
+  Widget build(context, state) => ChatDetailScreen(roomId: int.parse(roomId));
 }

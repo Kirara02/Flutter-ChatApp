@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:xchat/src/features/auth/presentation/providers/logout_provider.dart';
 import 'package:xchat/src/features/main/domain/model/chat_room.dart';
 import 'package:xchat/src/features/main/presentation/providers/chats_provider.dart';
 import 'package:xchat/src/routes/router_config.dart';
@@ -9,87 +8,41 @@ import 'package:xchat/src/routes/router_config.dart';
 class ChatsScreen extends ConsumerWidget {
   const ChatsScreen({super.key});
 
-  void _navigateToListUsers(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Navigasi ke halaman daftar pengguna...')),
-    );
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final chatsState = ref.watch(chatsNotifierProvider);
-    final logoutState = ref.watch(logoutNotifierProvider);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Chats',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        actions: [
-          IconButton(icon: const Icon(Icons.search), onPressed: () {}),
-          if (logoutState.isLoading)
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: SizedBox(
-                width: 20,
-                height: 20,
-                child: CircularProgressIndicator(strokeWidth: 2),
+    return RefreshIndicator(
+      onRefresh: () => ref.read(chatsNotifierProvider.notifier).refreshChats(),
+      child: chatsState.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (err, stack) => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Gagal memuat chat: $err'),
+              const SizedBox(height: 10),
+              ElevatedButton(
+                onPressed: () => ref.invalidate(chatsNotifierProvider),
+                child: const Text('Coba Lagi'),
               ),
-            )
-          else
-            PopupMenuButton<String>(
-              onSelected: (value) {
-                if (value == 'logout') {
-                  ref.read(logoutNotifierProvider.notifier).logout();
-                }
-              },
-              itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                const PopupMenuItem<String>(
-                  value: 'logout',
-                  child: Text('Logout'),
-                ),
-              ],
-            ),
-        ],
-      ),
-      body: RefreshIndicator(
-        onRefresh: () =>
-            ref.read(chatsNotifierProvider.notifier).refreshChats(),
-        child: chatsState.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (err, stack) => Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Gagal memuat chat: $err'),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () => ref.invalidate(chatsNotifierProvider),
-                  child: const Text('Coba Lagi'),
-                ),
-              ],
-            ),
+            ],
           ),
-          data: (chats) {
-            if (chats.isEmpty) {
-              return const Center(child: Text('Belum ada chat.'));
-            }
-            return ListView.separated(
-              itemCount: chats.length,
-              separatorBuilder: (context, index) =>
-                  const Divider(height: 0, indent: 80),
-              itemBuilder: (context, index) {
-                final chat = chats[index];
-                return ChatListItem(chat: chat);
-              },
-            );
-          },
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _navigateToListUsers(context),
-        child: const Icon(Icons.message),
+        data: (chats) {
+          if (chats.isEmpty) {
+            return const Center(child: Text('Belum ada chat.'));
+          }
+          return ListView.separated(
+            itemCount: chats.length,
+            separatorBuilder: (context, index) =>
+                const Divider(height: 0, indent: 80),
+            itemBuilder: (context, index) {
+              final chat = chats[index];
+              return ChatListItem(chat: chat);
+            },
+          );
+        },
       ),
     );
   }
@@ -131,22 +84,28 @@ class ChatListItem extends StatelessWidget {
         roomId: chat.id.toString(),
         $extra: chat.name,
       ).push(context),
-      leading: CircleAvatar(
-        radius: 28,
-        backgroundImage: NetworkImage(
-          chat.roomImage != null
-              ? chat.roomImage!
-              : 'https://ui-avatars.com/api/?name=${chat.name}&size=150',
+      leading: InkWell(
+        onTap: () => ChatDetailRoute(
+          roomId: chat.id.toString(),
+          $extra: chat.name,
+        ).push(context),
+        child: CircleAvatar(
+          radius: 28,
+          backgroundImage: NetworkImage(
+            chat.roomImage != null
+                ? chat.roomImage!
+                : 'https://ui-avatars.com/api/?name=${chat.name}&size=150',
+          ),
+          child: chat.isGroup
+              ? const Align(
+                  alignment: Alignment.bottomRight,
+                  child: CircleAvatar(
+                    radius: 10,
+                    child: Icon(Icons.group, size: 14),
+                  ),
+                )
+              : null,
         ),
-        child: chat.isGroup
-            ? const Align(
-                alignment: Alignment.bottomRight,
-                child: CircleAvatar(
-                  radius: 10,
-                  child: Icon(Icons.group, size: 14),
-                ),
-              )
-            : null,
       ),
       title: Text(
         chat.name,

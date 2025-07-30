@@ -6,12 +6,17 @@ part of '../router_config.dart';
       routes: [
         TypedGoRoute<ChatsRoute>(
           path: Routes.chats,
-          routes: [TypedGoRoute<ChatRoute>(path: ':roomId')],
+          routes: [
+            TypedGoRoute<ChatRoute>(
+              path: ':roomId',
+              routes: [TypedGoRoute<ChatDetailRoute>(path: 'detail')],
+            ),
+          ],
         ),
       ],
     ),
-    TypedStatefulShellBranch<ProfileBranch>(
-      routes: [TypedGoRoute<ProfileRoute>(path: Routes.profile)],
+    TypedStatefulShellBranch<StoriesBranch>(
+      routes: [TypedGoRoute<StoriesRoute>(path: Routes.stories)],
     ),
   ],
 )
