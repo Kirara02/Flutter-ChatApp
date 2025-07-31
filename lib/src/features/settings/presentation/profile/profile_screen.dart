@@ -6,6 +6,6 @@ class ProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Center(child: Text("Profile Screen"),);
+    return Scaffold(body: Text("Profile Screen"),);
   }
 }

@@ -25,4 +25,25 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get theme_mode_system => 'Sistem';
+
+  @override
+  String get chats => 'Pesan';
+
+  @override
+  String get stories => 'Cerita';
+
+  @override
+  String get settings => 'Pengaturan';
+
+  @override
+  String get profile => 'Profil';
+
+  @override
+  String get change_password => 'Ubah Password';
+
+  @override
+  String get about => 'Tentang';
+
+  @override
+  String get logout => 'Keluar';
 }

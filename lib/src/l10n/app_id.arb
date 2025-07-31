@@ -5,5 +5,12 @@
   "app_theme": "Mode Tema Aplikasi",
   "theme_mode_dark": "Gelap",
   "theme_mode_light": "Terang",
-  "theme_mode_system": "Sistem"
+  "theme_mode_system": "Sistem",
+  "chats": "Pesan",
+  "stories": "Cerita",
+  "settings": "Pengaturan",
+  "profile": "Profil",
+  "change_password": "Ubah Password",
+  "about": "Tentang",
+  "logout": "Keluar"
 }

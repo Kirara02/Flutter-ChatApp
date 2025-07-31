@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xchat/src/utils/extensions/custom_extensions.dart';
 import '../routes/router_config.dart';
 
 class NavigationBarData {
@@ -19,14 +20,14 @@ class NavigationBarData {
     NavigationBarData(
       icon: Icon(Icons.chat_outlined),
       activeIcon: Icon(Icons.chat),
-      label: (context) => "Chats",
+      label: (context) => context.l10n!.chats,
       go: const ChatsRoute().go,
       activeOn: [const ChatsRoute().location],
     ),
     NavigationBarData(
       icon: Icon(Icons.update_outlined),
       activeIcon: Icon(Icons.update_rounded),
-      label: (context) => "Story",
+      label: (context) => context.l10n!.stories,
       go: const StoriesRoute().go,
       activeOn: [const StoriesRoute().location],
     ),

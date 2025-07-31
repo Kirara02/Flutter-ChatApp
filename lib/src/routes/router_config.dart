@@ -9,6 +9,8 @@ import 'package:xchat/src/features/main/presentation/chat/chat_screen.dart';
 import 'package:xchat/src/features/main/presentation/chat_detail/chat_detail_screen.dart';
 import 'package:xchat/src/features/main/presentation/chats/chats_screen.dart';
 import 'package:xchat/src/features/main/presentation/stories/stories_screen.dart';
+import 'package:xchat/src/features/settings/presentation/profile/profile_screen.dart';
+import 'package:xchat/src/features/settings/presentation/settings/settings_screen.dart';
 import 'package:xchat/src/widgets/shell/shell_screen.dart';
 
 part 'router_config.g.dart';
@@ -16,6 +18,7 @@ part 'sub_routes/auth_routes.dart';
 part 'sub_routes/shell_routes.dart';
 part 'sub_routes/chat_routes.dart';
 part 'sub_routes/story_routes.dart';
+part 'sub_routes/setting_route.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>(
   debugLabel: 'root',
@@ -33,6 +36,8 @@ abstract class Routes {
   static const mainpage = '/main';
   static const chats = '/chats';
   static const stories = '/stories';
+
+  static const settings = '/settings';
 
 }
 

@@ -1,9 +1,16 @@
 {
   "@@locale": "en",
-  "app_name":"Xchat",
+  "app_name":"XChat",
   "app_language" : "App Language",
   "app_theme" : "App Theme Mode",
   "theme_mode_dark": "Dark",
   "theme_mode_light": "Light",
-  "theme_mode_system": "System"
+  "theme_mode_system": "System",
+  "chats": "Chats",
+  "stories": "Stories",
+  "settings": "Settings",
+  "profile": "Profile",
+  "change_password": "Change Password",
+  "about": "About",
+  "logout": "Logout"
 }

@@ -9,7 +9,7 @@ part of 'update_room_image_provider.dart';
 // **************************************************************************
 
 String _$updateRoomImageNotifierHash() =>
-    r'fa7bcdaa1d79f97907f88a9ea035050f58c2732d';
+    r'8570682ece4e28fcd024a1cd33d86a8738741c7b';
 
 /// See also [UpdateRoomImageNotifier].
 @ProviderFor(UpdateRoomImageNotifier)

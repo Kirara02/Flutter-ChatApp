@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:xchat/src/features/auth/presentation/providers/logout_provider.dart';
 import 'package:xchat/src/routes/router_config.dart';
+import 'package:xchat/src/utils/extensions/custom_extensions.dart';
 
 class RouteUIConfig {
   final PreferredSizeWidget? appBar;
@@ -10,51 +9,43 @@ class RouteUIConfig {
   const RouteUIConfig({this.appBar, this.floatingActionButton});
 }
 
-RouteUIConfig getRouteUIConfig(
-  BuildContext context,
-  WidgetRef ref,
-  String location,
-) {
-  final logoutState = ref.watch(logoutNotifierProvider);
+RouteUIConfig getRouteUIConfig({
+  required BuildContext context,
+  required String location,
+  required VoidCallback onSettings,
+}) {
+  if (location.startsWith(const ChatRoute(roomId: '').location)) {
+    return const RouteUIConfig();
+  }
 
   if (location.contains(const ChatsRoute().location)) {
     return RouteUIConfig(
       appBar: AppBar(
-        title: const Text(
-          'Chats',
+        title: Text(
+          context.l10n!.chats,
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         actions: [
           IconButton(icon: const Icon(Icons.search), onPressed: () {}),
-          if (logoutState.isLoading)
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: SizedBox(
-                width: 20,
-                height: 20,
-                child: CircularProgressIndicator(strokeWidth: 2),
-              ),
-            )
-          else
-            PopupMenuButton<String>(
-              icon: const Icon(Icons.more_vert),
-              onSelected: (value) {
-                switch (value) {
-                  case 'logout':
-                    ref.read(logoutNotifierProvider.notifier).logout();
-                    break;
-                  case 'settings':
-                    break;
-                }
-              },
-              itemBuilder: (BuildContext context) => const [
-                PopupMenuItem<String>(
-                  value: 'settings',
-                  child: Text('Settings'),
-                ),
-                PopupMenuItem<String>(value: 'logout', child: Text('Logout')),
-              ],
-            ),
+
+          // PopupMenuButton<String>(
+          //   itemBuilder: (context) => [
+          //     PopupMenuItem(
+          //       value: 'settings',
+          //       onTap: onSettings,
+          //       child: Text('Settings'),
+          //     ),
+          //     PopupMenuItem(
+          //       value: 'logout',
+          //       onTap: onLogout,
+          //       child: Text('Logout'),
+          //     ),
+          //   ],
+          // ),
+          IconButton(
+            onPressed: onSettings,
+            icon: Icon(Icons.settings_outlined),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -65,13 +56,38 @@ RouteUIConfig getRouteUIConfig(
             ),
           );
         },
-        child: const Icon(Icons.message),
+        child: const Icon(Icons.contacts_rounded),
       ),
     );
   }
 
+  // Stories config
   if (location.contains(const StoriesRoute().location)) {
-    return RouteUIConfig(appBar: AppBar(title: const Text('Stories')));
+    return RouteUIConfig(
+      appBar: AppBar(
+        title: Text(context.l10n!.stories),
+        actions: [
+          // PopupMenuButton<String>(
+          //   itemBuilder: (context) => [
+          //     PopupMenuItem(
+          //       value: 'settings',
+          //       onTap: onSettings,
+          //       child: Text('Settings'),
+          //     ),
+          //     PopupMenuItem(
+          //       value: 'logout',
+          //       onTap: onLogout,
+          //       child: Text('Logout'),
+          //     ),
+          //   ],
+          // ),
+          IconButton(
+            onPressed: onSettings,
+            icon: Icon(Icons.settings_outlined),
+          ),
+        ],
+      ),
+    );
   }
 
   return const RouteUIConfig();

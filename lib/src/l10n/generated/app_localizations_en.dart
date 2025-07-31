@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get app_name => 'Xchat';
+  String get app_name => 'XChat';
 
   @override
   String get app_language => 'App Language';
@@ -25,4 +25,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get theme_mode_system => 'System';
+
+  @override
+  String get chats => 'Chats';
+
+  @override
+  String get stories => 'Stories';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get change_password => 'Change Password';
+
+  @override
+  String get about => 'About';
+
+  @override
+  String get logout => 'Logout';
 }
