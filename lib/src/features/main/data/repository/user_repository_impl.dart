@@ -5,9 +5,7 @@ import 'package:xchat/src/features/auth/domain/model/user.dart';
 import 'package:xchat/src/features/main/data/datasource/remote/user_datasource.dart';
 import 'package:xchat/src/features/main/domain/repository/user_repository.dart';
 import 'package:xchat/src/features/main/domain/usecase/search_users/search_users_params.dart';
-import 'package:xchat/src/features/main/domain/usecase/update_profile/update_profile_params.dart';
 import 'package:xchat/src/utils/extensions/custom_extensions.dart';
-import 'package:dio/dio.dart';
 
 part 'user_repository_impl.g.dart';
 
@@ -17,29 +15,7 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl({required UserDatasource datasource})
     : _datasource = datasource;
 
-  @override
-  Future<Result<User>> getProfile({CancelToken? cancelToken}) async {
-    final response = await _datasource.getProfile(cancelToken: cancelToken);
-    if (response.success && response.data != null) {
-      return Result.success(response.data!.toModel());
-    }
-    return Result.failed(response.message, code: response.error?.code);
-  }
 
-  @override
-  Future<Result<User>> updateProfile({
-    required UpdateProfileParams params,
-  }) async {
-    final response = await _datasource.update(
-      name: params.name,
-      email: params.email,
-      cancelToken: params.cancelToken,
-    );
-    if (response.success && response.data != null) {
-      return Result.success(response.data!.toModel());
-    }
-    return Result.failed(response.message, code: response.error?.code);
-  }
 
   @override
   Future<Result<List<User>>> searchUsers({

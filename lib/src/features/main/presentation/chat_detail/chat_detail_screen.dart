@@ -51,7 +51,7 @@ class ChatDetailScreen extends ConsumerWidget {
                             case 'edit_image':
                               final picker = ImagePickerHelper();
                               final selectedImage = await picker
-                                  .pickAndProcessImage(ImageSource.gallery);
+                                  .pickAndProcessImage(source: ImageSource.gallery);
                               if (selectedImage == null) return;
 
                               await updateNotifier.updateImage(

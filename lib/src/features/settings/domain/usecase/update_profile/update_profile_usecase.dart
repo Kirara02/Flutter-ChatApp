@@ -3,16 +3,16 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:xchat/src/core/result.dart';
 import 'package:xchat/src/core/usecase.dart';
 import 'package:xchat/src/features/auth/domain/model/user.dart';
-import 'package:xchat/src/features/main/data/repository/user_repository_impl.dart';
-import 'package:xchat/src/features/main/domain/repository/user_repository.dart';
-import 'package:xchat/src/features/main/domain/usecase/update_profile/update_profile_params.dart';
+import 'package:xchat/src/features/settings/data/repository/profile_repository_impl.dart';
+import 'package:xchat/src/features/settings/domain/repository/profile_repository.dart';
+import 'package:xchat/src/features/settings/domain/usecase/update_profile/update_profile_params.dart';
 
 part 'update_profile_usecase.g.dart';
 
 class UpdateProfile implements UseCase<Result<User>, UpdateProfileParams> {
-  final UserRepository _repository;
+  final ProfileRepository _repository;
 
-  UpdateProfile({required UserRepository repository})
+  UpdateProfile({required ProfileRepository repository})
     : _repository = repository;
 
   @override
@@ -23,4 +23,4 @@ class UpdateProfile implements UseCase<Result<User>, UpdateProfileParams> {
 
 @riverpod
 UpdateProfile updateProfile(Ref ref) =>
-    UpdateProfile(repository: ref.read(userRepositoryProvider));
+    UpdateProfile(repository: ref.read(profileRepositoryProvider));

@@ -8,7 +8,7 @@ part of 'get_profile_usecase.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getProfileHash() => r'cc841159f6988001a878b35f5bf6dacdb96d312e';
+String _$getProfileHash() => r'5e25907017e0e31440a978be2dd12a8f15b87eb2';
 
 /// See also [getProfile].
 @ProviderFor(getProfile)

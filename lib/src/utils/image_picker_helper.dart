@@ -9,7 +9,7 @@ class ImagePickerHelper {
   final ImagePicker _picker = ImagePicker();
 
   /// Returns XFile (web/mobile) or Uint8List (web cropped)
-  Future<XFile?> pickAndProcessImage(ImageSource source) async {
+  Future<XFile?> pickAndProcessImage({required ImageSource source}) async {
     final picked = await _picker.pickImage(source: source);
     if (picked == null) return null;
 

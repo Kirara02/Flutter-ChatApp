@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:xchat/src/core/result.dart';
 import 'package:xchat/src/features/auth/domain/model/user.dart';
-import 'package:xchat/src/features/main/domain/usecase/get_profile/get_profile_usecase.dart';
+import 'package:xchat/src/features/settings/domain/usecase/get_profile/get_profile_usecase.dart';
 import 'package:xchat/src/global_providers/global_providers.dart';
 
 part 'auth_user_provider.g.dart';

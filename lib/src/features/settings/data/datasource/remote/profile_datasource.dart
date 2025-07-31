@@ -6,12 +6,32 @@ import 'package:xchat/src/features/auth/data/dto/user_dto.dart';
 import 'package:xchat/src/global_providers/global_providers.dart';
 import 'package:dio/dio.dart';
 
-part 'user_datasource.g.dart';
+part 'profile_datasource.g.dart';
 
-class UserDatasource {
+class ProfileDatasource {
   final DioClient _dioClient;
 
-  UserDatasource({required DioClient dioClient}) : _dioClient = dioClient;
+  ProfileDatasource({required DioClient dioClient}) : _dioClient = dioClient;
+
+  Future<ApiResponse<UserDto>> getProfile({CancelToken? cancelToken}) async {
+    return await _dioClient.getApiData<UserDto, dynamic>(
+      "/profile",
+      converter: (json) => UserDto.fromMap(json),
+      cancelToken: cancelToken,
+    );
+  }
+
+  Future<ApiResponse<UserDto>> update({
+    required FormData formData,
+    CancelToken? cancelToken,
+  }) async {
+    return _dioClient.putApiData<UserDto, dynamic>(
+      "/profile",
+      data: formData,
+      converter: (json) => UserDto.fromMap(json),
+      cancelToken: cancelToken,
+    );
+  }
 
   Future<ApiResponse<List<UserDto>>> searchUsers({
     required String keyword,
@@ -29,5 +49,5 @@ class UserDatasource {
 }
 
 @riverpod
-UserDatasource userDatasource(Ref ref) =>
-    UserDatasource(dioClient: ref.read(dioClientKeyProvider));
+ProfileDatasource profileDatasource(Ref ref) =>
+    ProfileDatasource(dioClient: ref.read(dioClientKeyProvider));
