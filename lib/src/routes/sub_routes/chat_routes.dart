@@ -11,6 +11,12 @@ class ChatsRoute extends GoRouteData with _$ChatsRoute {
   Widget build(context, state) => ChatsScreen();
 }
 
+class CreateRoomRoute extends GoRouteData with _$CreateRoomRoute {
+  const CreateRoomRoute();
+  @override
+  Widget build(context, state) => CreateRoomScreen();
+}
+
 class ChatRoute extends GoRouteData with _$ChatRoute {
   final String roomId;
   final String? $extra;

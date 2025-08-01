@@ -7,6 +7,7 @@ part of '../router_config.dart';
         TypedGoRoute<ChatsRoute>(
           path: Routes.chats,
           routes: [
+            TypedGoRoute<CreateRoomRoute>(path: 'create'),
             TypedGoRoute<ChatRoute>(
               path: ':roomId',
               routes: [TypedGoRoute<ChatDetailRoute>(path: 'detail')],

@@ -2,27 +2,28 @@
 
 // ignore_for_file: always_specify_types, public_member_api_docs
 
-part of 'profile_notifier_provider.dart';
+part of 'room_creation_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$profileNotifierHash() => r'79cce9f45a078d56b0b6506b4cd17f1fbf1105a1';
+String _$roomCreationNotifierHash() =>
+    r'c22f4c93907f62b06a6270ced3ca8322043e4163';
 
-/// See also [ProfileNotifier].
-@ProviderFor(ProfileNotifier)
-final profileNotifierProvider =
-    AutoDisposeAsyncNotifierProvider<ProfileNotifier, void>.internal(
-      ProfileNotifier.new,
-      name: r'profileNotifierProvider',
+/// See also [RoomCreationNotifier].
+@ProviderFor(RoomCreationNotifier)
+final roomCreationNotifierProvider =
+    AutoDisposeAsyncNotifierProvider<RoomCreationNotifier, ChatRoom?>.internal(
+      RoomCreationNotifier.new,
+      name: r'roomCreationNotifierProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$profileNotifierHash,
+          : _$roomCreationNotifierHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$ProfileNotifier = AutoDisposeAsyncNotifier<void>;
+typedef _$RoomCreationNotifier = AutoDisposeAsyncNotifier<ChatRoom?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

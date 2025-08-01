@@ -10,10 +10,12 @@ class ChatsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final chatsState = ref.watch(chatsNotifierProvider);
+    final chatsState = ref.watch(chatsNotifierProvider(showEmpty: false));
 
     return RefreshIndicator(
-      onRefresh: () => ref.read(chatsNotifierProvider.notifier).refreshChats(),
+      onRefresh: () => ref
+          .read(chatsNotifierProvider(showEmpty: false).notifier)
+          .refreshChats(),
       child: chatsState.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(

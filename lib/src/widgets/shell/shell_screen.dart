@@ -35,14 +35,20 @@ class ShellScreen extends ConsumerWidget {
 
     if (context.isTablet) {
       return Scaffold(
-        appBar: ui.appBar,
         body: Row(
           children: [
+            // NavigationRail (sidebar) selalu ditampilkan di layar besar.
             BigScreenNavigationBar(selectedScreen: context.location),
-            Expanded(child: child),
+            // Expanded berisi Scaffold untuk area konten utama.
+            Expanded(
+              child: Scaffold(
+                appBar: ui.appBar,
+                body: child,
+                floatingActionButton: ui.floatingActionButton,
+              ),
+            ),
           ],
         ),
-        floatingActionButton: ui.floatingActionButton,
       );
     } else {
       return Scaffold(

@@ -16,11 +16,13 @@ class ChatRoomDatasource {
   Future<ApiResponse<List<ChatRoomDto>>> getChats({
     String? viewType = 'detailed',
     bool includeMembers = false,
+    bool showEmpty = false,
     CancelToken? cancelToken,
   }) async {
     final queryParameters = {
       'view': viewType, // detailed | simple
       'include_members': includeMembers,
+      'show_empty': showEmpty,
     };
     return await _dioClient.getApiData<List<ChatRoomDto>, ChatRoomDto>(
       "/rooms",
@@ -29,14 +31,26 @@ class ChatRoomDatasource {
       itemConverter: (json) => ChatRoomDto.fromMap(json),
     );
   }
-  
-Future<ApiResponse<ChatRoomDto>> getUserRoomsById({
+
+  Future<ApiResponse<ChatRoomDto>> getUserRoomsById({
     required int roomId,
     CancelToken? cancelToken,
   }) async {
-    
     return await _dioClient.getApiData<ChatRoomDto, dynamic>(
       "/rooms/$roomId",
+      cancelToken: cancelToken,
+      converter: (json) => ChatRoomDto.fromMap(json),
+    );
+  }
+
+  Future<ApiResponse<ChatRoomDto>> createRoom({
+    required String name,
+    required List<int> userIds,
+    CancelToken? cancelToken,
+  }) async {
+    return await _dioClient.postApiData(
+      '/rooms',
+      data: {'name': name, 'userIds': userIds},
       cancelToken: cancelToken,
       converter: (json) => ChatRoomDto.fromMap(json),
     );

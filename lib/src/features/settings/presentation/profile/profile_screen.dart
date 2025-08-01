@@ -144,16 +144,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     ImageProvider? backgroundImage;
 
     if (_profileImageFile != null) {
-      // Jika ada file gambar yang baru dipilih
       if (kIsWeb) {
-        // Untuk Web, gunakan NetworkImage dengan path dari XFile
         backgroundImage = NetworkImage(_profileImageFile!.path);
       } else {
-        // Untuk Mobile (iOS/Android), gunakan FileImage
         backgroundImage = FileImage(File(_profileImageFile!.path));
       }
     } else if (imageUrl != null && imageUrl.isNotEmpty) {
-      // Jika tidak ada file baru, gunakan URL dari server
       backgroundImage = NetworkImage(imageUrl);
     }
 

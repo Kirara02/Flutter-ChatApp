@@ -8,6 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:xchat/src/features/main/presentation/chat/chat_screen.dart';
 import 'package:xchat/src/features/main/presentation/chat_detail/chat_detail_screen.dart';
 import 'package:xchat/src/features/main/presentation/chats/chats_screen.dart';
+import 'package:xchat/src/features/main/presentation/contacts/create_room_screen.dart';
 import 'package:xchat/src/features/main/presentation/stories/stories_screen.dart';
 import 'package:xchat/src/features/settings/presentation/profile/profile_screen.dart';
 import 'package:xchat/src/features/settings/presentation/settings/settings_screen.dart';
@@ -18,7 +19,7 @@ part 'sub_routes/auth_routes.dart';
 part 'sub_routes/shell_routes.dart';
 part 'sub_routes/chat_routes.dart';
 part 'sub_routes/story_routes.dart';
-part 'sub_routes/setting_route.dart';
+part 'sub_routes/setting_routes.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>(
   debugLabel: 'root',
@@ -38,7 +39,6 @@ abstract class Routes {
   static const stories = '/stories';
 
   static const settings = '/settings';
-
 }
 
 @riverpod

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xchat/src/constants/gen/assets.gen.dart';
 import 'package:xchat/src/routes/router_config.dart';
 import 'package:xchat/src/utils/extensions/custom_extensions.dart';
 
@@ -49,14 +50,11 @@ RouteUIConfig getRouteUIConfig({
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.lightGreen,
         onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Navigasi ke halaman daftar pengguna...'),
-            ),
-          );
+          CreateRoomRoute().push(context);
         },
-        child: const Icon(Icons.contacts_rounded),
+        child: Assets.icons.addMessage.svg(width: 28, height: 28),
       ),
     );
   }
